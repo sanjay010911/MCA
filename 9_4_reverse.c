@@ -21,22 +21,22 @@ void insert(int data)
 	}
 	else
 	{
-		//t=head;
-		t=(Node *)malloc(sizeof(Node));
-		t->next=head;
-		t->data=data;
-		head=t;	
+		t=head;
+		while(t->next!=NULL)
+		{
+			t=t->next;
+		}
+		t->next=(Node *)malloc(sizeof(Node));
+		t->next->data=data;
+		t->next->next=NULL;
 	}
 }
 
-void disp()
+void rev(Node *t)
 {
-	Node *t=head;
-	while(t!=NULL)
-	{
-		printf("%d ",t->data);
-		t=t->next;
-	}
+	if(t->next!=NULL)
+		rev(t->next);
+	printf("%d",t->data);
 }
 
 
@@ -55,6 +55,6 @@ int main()
 		i++;
 	}
 	
-	disp();
+	rev(head);
 	return 0;
 }
