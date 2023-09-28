@@ -76,13 +76,20 @@ void display()
 	}
 }
 
+void rev(name *t)
+{
+	if(t->next!=NULL)
+		rev(t->next);
+	printf("%s ",t->n);
+}
+
 void sort()
 {
 	name *t,*j,*i;
 	//int i,j;
 	for(t=head;t->next!=NULL;t=t->next)
 		for(j=t->next;j!=NULL;j=j->next)
-		if(strcmp(t->n,j->n)<0)
+		if(strcmp(t->n,j->n)>0)
 		{
 			strcpy(i->n,t->n);
 			strcpy(t->n,j->n);
@@ -95,7 +102,7 @@ int menu()
 {
 	int ch,pos;
 	char a[30];
-	printf("\nenter a choice \n1:INSERT\n2:DELETE\n3:SORT\n4:DISPLAY\n5:COUNT\n6:EXIT\n");
+	printf("\nenter a choice \n1:INSERT\n2:DELETE\n3:SORT\n4:DISPLAY\n5:COUNT\n6:REVERSE\n7:EXIT\n");
 	scanf("%d",&ch);
 	return ch;
 }
@@ -103,7 +110,7 @@ int main()
 {
 	int ch,pos;
 	char a[30];
-	for(ch=menu();ch!=6;ch=menu())
+	for(ch=menu();ch!=7;ch=menu())
 	{
 		switch(ch)
 		{
@@ -120,6 +127,8 @@ int main()
 			case 4:display();
 					break;
 			case 5:printf("\n%d",count);
+					break;
+			case 6:rev(head);
 					break;
 		}
 	}
