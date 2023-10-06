@@ -33,12 +33,12 @@ void insert(int data)
  
  void delete(int data)
  {
- 	if((head->data==data)&&(head->next==head))
- 	{
+ 	if(head==NULL)
+		printf("\nCircular LL empty");
+	else if((head->data==data)&&(head->next==head))
  		head=NULL;
-	 }
-	 else if((head->data==data)&&(head->next!=head))
-	 {
+	else if((head->data==data)&&(head->next!=head))
+	{
 	 	node *t=head;
 	 	while(t->next!=head)
 	 	{
@@ -46,9 +46,7 @@ void insert(int data)
 		}
 		t->next=head->next;
 		head=head->next; 
-	 }
-	 else if(head==NULL)
-	 	printf("\nCircular LL empty");
+	}
  	else
 	{
 		node *t;
@@ -59,9 +57,11 @@ void insert(int data)
 			prev=t;
 			t=t->next;
 		}
-		if(t->next==head)
-		
-		prev->next=t->next;
+		if(t->data==data)
+			prev->next=t->next;
+		else if((t->data!=data)&&(t->next==head))
+			printf("\nElement Not Found");
+			
 	}
  }
  

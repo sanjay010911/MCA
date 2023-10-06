@@ -70,10 +70,11 @@ void inspos(int data,int val)
 		{
 			t=t->next;
 		}
-		prev=t->next;
-		t->next=(Node *)malloc(sizeof(Node));
-		t->next->next=prev;
-		t->next->data=data;
+		if((t->next==NULL)&&(t->data!=val))
+			printf("\nElement Not Found");
+		else if((t->data==val)&&(t->next!=NULL))
+			
+				
 		
 	}
 }
